@@ -1,0 +1,6 @@
+apollo_replay/
+complex_scenarios/
+simple_scenarios/
+experiments/
+experiments-lessconfig/
+*.pkl

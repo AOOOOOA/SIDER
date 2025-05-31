@@ -1,0 +1,765 @@
+APOLLO_ROOT /home/w/workspace/carla_apollo/apollo
+[1mI1126[0m [32m13:19:07.868[0m [36mtester.py:859[0m] [1mCreated base test directory: /home/w/workspace/carla_apollo/apollo/modules/carla_bridge/multi_vehicle_fuzz/test_outputs/20241126_131907[0m
+before connect to dreamview
+[1mI1126[0m [32m13:19:07.869[0m [36mreset_dreamview.py:17[0m] [1mSuccessfully connected to Dreamview at ws://localhost:8888/websocket[0m
+after connect to dreamview
+******************************************************
+**********************START Container*****************
+******************************************************
+********************Checking DreamView Status************
+[1mI1126[0m [32m13:19:07.893[0m [36mcontainer.py:1341[0m] [1mDreamview is running[0m
+********************Checking Carla Status************
+[1mI1126[0m [32m13:19:07.907[0m [36mtester.py:464[0m] [1mUsing existing container: apollo_dev_w @ [0m
+******************************************************
+********************Checking Apollo Status************
+******************************************************
+Executing command: docker exec -u $USER apollo_dev_w ps aux | grep -E 'modules/(planning|control|perception)/mainboard' | grep -v grep
+[1mI1126[0m [32m13:19:07.924[0m [36mcontainer.py:1359[0m] [1mCarla is running[0m
+----result CompletedProcess(args="docker exec -u $USER apollo_dev_w ps aux | grep -E 'modules/(planning|control|perception)/mainboard' | grep -v grep", returncode=1, stdout='', stderr='')
+Command failed with return code 1
+Standard Output:
+
+Standard Error:
+
+********************========================************
+********************CLEAN APOLLO DATA!! CHECKOUT!!!************
+********************========================************
+test_output_dir is: None
+--- before clean the bag directory=
+Executing command: docker exec -u $USER apollo_dev_w bash -c 'rm -rf /apollo/data/bag/*'
+[31m[1mE1126[0m [32m13:19:08.020[0m [36mcontainer.py:416[0m] [1mCommand failed with return code 1[0m
+[31m[1mE1126[0m [32m13:19:08.020[0m [36mcontainer.py:417[0m] [1mStandard Output:
+[0m
+[31m[1mE1126[0m [32m13:19:08.021[0m [36mcontainer.py:418[0m] [1mStandard Error:
+[0m
+----result CompletedProcess(args="docker exec -u $USER apollo_dev_w bash -c 'rm -rf /apollo/data/bag/*'", returncode=0)
+Command executed successfully: None
+Executing command: docker exec -u $USER apollo_dev_w bash -c 'rm -rf /apollo/data/core/*'
+----result CompletedProcess(args="docker exec -u $USER apollo_dev_w bash -c 'rm -rf /apollo/data/core/*'", returncode=0)
+Command executed successfully: None
+[1mI1126[0m [32m13:19:08.127[0m [36mcontainer.py:1291[0m] [1mCleaned Apollo data directories[0m
+[1mI1126[0m [32m13:19:08.128[0m [36mtester.py:918[0m] [1mStarting test with 90 vehicles and 60 walkers[0m
+[1mI1126[0m [32m13:19:08.129[0m [36mreset_dreamview.py:30[0m] [1mSent reset command[0m
+[1mI1126[0m [32m13:19:09.135[0m [36mtester.py:552[0m] [1mStarting test at 20241126_131909[0m
+****************************************
+LAUNCH BRIDGE
+replay is: False objects_file is: None
+**************************************************
+Generated command: cd /apollo/modules/carla_bridge && export PYTHONPATH=/apollo/bazel-bin/cyber/python/internal:/apollo/cyber:/apollo/cyber/python:/apollo:/apollo/modules:/apollo/modules/carla_bridge/carla_api/carla-0.9.14-py3.7-linux-x86_64.egg:/apollo/bazel-bin && python3 main.py
+Executing command: docker exec -u $USER -d apollo_dev_w bash -c "cd /apollo/modules/carla_bridge && export PYTHONPATH=/apollo/bazel-bin/cyber/python/internal:/apollo/cyber:/apollo/cyber/python:/apollo:/apollo/modules:/apollo/modules/carla_bridge/carla_api/carla-0.9.14-py3.7-linux-x86_64.egg:/apollo/bazel-bin && python3 main.py"
+[1mI1126[0m [32m13:19:09.135[0m [36mtester.py:553[0m] [1mConfiguration: 90 vehicles, 60 walkers[0m
+[1mI1126[0m [32m13:19:09.136[0m [36mcontainer.py:452[0m] [1mStarting Carla bridge...[0m
+Successfully initiated launching Carla bridge asynchronously
+Executing command: docker exec -u $USER apollo_dev_w bash -c 'ps aux | grep "main.py" | grep -v grep | wc -l'
+[1mI1126[0m [32m13:19:14.257[0m [36mcontainer.py:504[0m] [1mSuccessfully initiated launching Carla bridge asynchronously[0m
+----result CompletedProcess(args='docker exec -u $USER apollo_dev_w bash -c \'ps aux | grep "main.py" | grep -v grep | wc -l\'', returncode=0, stdout='1\n', stderr='')
+Command executed successfully: 1
+
+[1mI1126[0m [32m13:19:14.366[0m [36mcontainer.py:517[0m] [1mCarla bridge is running.[0m
+Carla bridge is running.
+Executing command: docker exec -u $USER apollo_dev_w mkdir -p '/apollo/modules/carla_bridge/multi_vehicle_fuzz/test_outputs/20241126_131907/test_20241126_131909_v90_w60/original_scenario/apollo_logs'
+----result CompletedProcess(args="docker exec -u $USER apollo_dev_w mkdir -p '/apollo/modules/carla_bridge/multi_vehicle_fuzz/test_outputs/20241126_131907/test_20241126_131909_v90_w60/original_scenario/apollo_logs'", returncode=0, stdout='', stderr='')
+Command executed successfully: 
+Executing command: docker exec -u $USER -d apollo_dev_w bash -c 'source /apollo/cyber/setup.bash &&                 cyber_recorder record -a -o "/apollo/modules/carla_bridge/multi_vehicle_fuzz/test_outputs/20241126_131907/test_20241126_131909_v90_w60/original_scenario/apollo_logs/apollo.record" > /dev/null 2>&1'
+[1mI1126[0m [32m13:19:14.403[0m [36mcontainer.py:1437[0m] [1mStarted Apollo recorder, saving to /apollo/modules/carla_bridge/multi_vehicle_fuzz/test_outputs/20241126_131907/test_20241126_131909_v90_w60/original_scenario/apollo_logs/apollo.record[0m
+Executing command: docker exec -u $USER apollo_dev_w bash -c 'ps aux | grep "cyber_recorder.*record" | grep -v grep | wc -l'
+----result CompletedProcess(args='docker exec -u $USER apollo_dev_w bash -c \'ps aux | grep "cyber_recorder.*record" | grep -v grep | wc -l\'', returncode=0, stdout='4\n', stderr='')
+Command executed successfully: 4
+
+Executing command: docker exec -u $USER -d apollo_dev_w bash -c 'cd /apollo/modules/carla_bridge && export PYTHONPATH="/apollo/bazel-bin/cyber/python/internal:/apollo/cyber/python:/apollo:/apollo/modules:/apollo/modules/carla_bridge/carla_api/carla-0.9.14-py3.7-linux-x86_64.egg:/apollo/bazel-bin" && python3 /apollo/modules/carla_bridge/multi_vehicle_fuzz/generate_traffic.py -n 90 -w 60 --safe --async'
+[1mI1126[0m [32m13:19:14.465[0m [36mcontainer.py:1453[0m] [1mApollo recorder is running[0m
+[1mI1126[0m [32m13:19:14.465[0m [36mcontainer.py:574[0m] [1mGenerating traffic with 90 vehicles and 60 walkers[0m
+[1mI1126[0m [32m13:19:14.507[0m [36mcontainer.py:604[0m] [1mSuccessfully initiated traffic generation[0m
+[1mI1126[0m [32m13:19:19.512[0m [36mcontainer.py:864[0m] [1mStarting record data with paths:[0m
+[1mI1126[0m [32m13:19:19.513[0m [36mcontainer.py:865[0m] [1mOutput path: /home/w/workspace/carla_apollo/apollo/modules/carla_bridge/multi_vehicle_fuzz/test_outputs/20241126_131907/test_20241126_131909_v90_w60/original_scenario/carla_records/vehicle_states.json[0m
+[1mI1126[0m [32m13:19:19.514[0m [36mcontainer.py:866[0m] [1mCarla record path: /home/w/workspace/carla_apollo/apollo/modules/carla_bridge/multi_vehicle_fuzz/test_outputs/20241126_131907/test_20241126_131909_v90_w60/original_scenario/carla_records/carla_recorder.log[0m
+[1mI1126[0m [32m13:19:19.514[0m [36mcontainer.py:879[0m] [1mExecuting command: python3 -u /home/w/workspace/carla_apollo/apollo/modules/carla_bridge/multi_vehicle_fuzz/record_data.py --output /home/w/workspace/carla_apollo/apollo/modules/carla_bridge/multi_vehicle_fuzz/test_outputs/20241126_131907/test_20241126_131909_v90_w60/original_scenario/carla_records/vehicle_states.json --carla-record /home/w/workspace/carla_apollo/apollo/modules/carla_bridge/multi_vehicle_fuzz/test_outputs/20241126_131907/test_20241126_131909_v90_w60/original_scenario/carla_records/carla_recorder.log[0m
+[1mI1126[0m [32m13:19:19.521[0m [36mcontainer.py:906[0m] [1mStarted record data process with PID 23622[0m
+[1mI1126[0m [32m13:19:20.751[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] ******************************output dir is: /home/w/workspace/carla_apollo/apollo/modules/carla_bridge/multi_vehicle_fuzz/test_outputs/20241126_131907/test_20241126_131909_v90_w60/original_scenario/carla_records/vehicle_states.json[0m
+[1mI1126[0m [32m13:19:20.791[0m [36mcontainer.py:895[0m] [1m[Record Data ERR] 2024-11-26 13:19:20.791 | INFO     | __main__:main:640 - Started Carla recording: /home/w/workspace/carla_apollo/apollo/modules/carla_bridge/multi_vehicle_fuzz/test_outputs/20241126_131907/test_20241126_131909_v90_w60/original_scenario/carla_records/carla_recorder.log[0m
+[1mI1126[0m [32m13:19:20.792[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] searching for ego vehicle...[0m
+[1mI1126[0m [32m13:19:20.891[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] searching for ego vehicle...[0m
+[1mI1126[0m [32m13:19:20.895[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle found: 197[0m
+[1mI1126[0m [32m13:19:21.035[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0 roll: 0.0 pitch: 0.0[0m
+[1mI1126[0m [32m13:19:21.037[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 0.00, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:21.110[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0 roll: 0.0 pitch: 0.0[0m
+[1mI1126[0m [32m13:19:21.111[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: -0.00, 0.00, 0.00[0m
+[1mI1126[0m [32m13:19:21.203[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0 roll: 0.0 pitch: 0.0[0m
+[1mI1126[0m [32m13:19:21.203[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: -0.00, 0.00, 0.00[0m
+[1mI1126[0m [32m13:19:21.297[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0 roll: 0.0 pitch: 0.0[0m
+[1mI1126[0m [32m13:19:21.299[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: -0.00, 0.00, 0.00[0m
+[1mI1126[0m [32m13:19:21.378[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0 roll: 0.0 pitch: 0.0[0m
+[1mI1126[0m [32m13:19:21.379[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: -0.00, 0.00, 0.00[0m
+[1mI1126[0m [32m13:19:21.462[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0 roll: 0.0 pitch: 0.0[0m
+[1mI1126[0m [32m13:19:21.464[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 0.00, -0.00, 0.00[0m
+***************SET DESTINATION************************
+[1mI1126[0m [32m13:19:21.524[0m [36mcontainer.py:1143[0m] [1mSet-Destination: Generated command: source /apollo/cyber/setup.bash && source /apollo/scripts/apollo_base.sh && export PYTHONPATH=$PYTHONPATH:/apollo/bazel-bin/cyber/python/internal:/apollo/cyber:/apollo/cyber/python:/apollo:/apollo/modules:/apollo/modules/carla_bridge/carla_api/carla-0.9.14-py3.7-linux-x86_64.egg:/apollo/bazel-bin:/apollo/modules/carla_bridge && cd /apollo/modules/carla_bridge/multi_vehicle_fuzz && python3 routing_handler.py --mode generate --test_dir /apollo/modules/carla_bridge/multi_vehicle_fuzz/test_outputs/20241126_131907/test_20241126_131909_v90_w60 && exit 0[0m
+Set-Destination: Generated command: source /apollo/cyber/setup.bash && source /apollo/scripts/apollo_base.sh && export PYTHONPATH=$PYTHONPATH:/apollo/bazel-bin/cyber/python/internal:/apollo/cyber:/apollo/cyber/python:/apollo:/apollo/modules:/apollo/modules/carla_bridge/carla_api/carla-0.9.14-py3.7-linux-x86_64.egg:/apollo/bazel-bin:/apollo/modules/carla_bridge && cd /apollo/modules/carla_bridge/multi_vehicle_fuzz && python3 routing_handler.py --mode generate --test_dir /apollo/modules/carla_bridge/multi_vehicle_fuzz/test_outputs/20241126_131907/test_20241126_131909_v90_w60 && exit 0
+Executing command: docker exec -u $USER -d apollo_dev_w bash -c 'source /apollo/cyber/setup.bash && source /apollo/scripts/apollo_base.sh && export PYTHONPATH=$PYTHONPATH:/apollo/bazel-bin/cyber/python/internal:/apollo/cyber:/apollo/cyber/python:/apollo:/apollo/modules:/apollo/modules/carla_bridge/carla_api/carla-0.9.14-py3.7-linux-x86_64.egg:/apollo/bazel-bin:/apollo/modules/carla_bridge && cd /apollo/modules/carla_bridge/multi_vehicle_fuzz && python3 routing_handler.py --mode generate --test_dir /apollo/modules/carla_bridge/multi_vehicle_fuzz/test_outputs/20241126_131907/test_20241126_131909_v90_w60 && exit 0'
+[1mI1126[0m [32m13:19:21.555[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0 roll: 0.0 pitch: 0.0[0m
+[1mI1126[0m [32m13:19:21.558[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 0.00, 0.00, 0.00[0m
+Successfully initiated setting destination asynchronously
+[1mI1126[0m [32m13:19:21.640[0m [36mcontainer.py:1151[0m] [1mSuccessfully initiated setting destination asynchronously[0m
+[1mI1126[0m [32m13:19:21.657[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0 roll: 0.0 pitch: 0.0[0m
+[1mI1126[0m [32m13:19:21.658[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: -0.00, 0.00, 0.00[0m
+[1mI1126[0m [32m13:19:21.786[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0 roll: 0.0 pitch: 0.0[0m
+[1mI1126[0m [32m13:19:21.787[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: -0.00, 0.00, 0.00[0m
+[1mI1126[0m [32m13:19:21.881[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0 roll: 0.0 pitch: 0.0[0m
+[1mI1126[0m [32m13:19:21.883[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: -0.00, 0.00, 0.00[0m
+[1mI1126[0m [32m13:19:21.950[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0 roll: 0.0 pitch: 0.0[0m
+[1mI1126[0m [32m13:19:21.952[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: -0.00, 0.00, 0.00[0m
+[1mI1126[0m [32m13:19:22.069[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0 roll: 0.0 pitch: 0.0[0m
+[1mI1126[0m [32m13:19:22.073[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: -0.00, 0.00, 0.00[0m
+[1mI1126[0m [32m13:19:22.138[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0 roll: 0.0 pitch: 0.0[0m
+[1mI1126[0m [32m13:19:22.140[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: -0.00, 0.00, 0.00[0m
+[1mI1126[0m [32m13:19:22.223[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0 roll: 0.0 pitch: 0.0[0m
+[1mI1126[0m [32m13:19:22.226[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: -0.00, 0.00, 0.00[0m
+[1mI1126[0m [32m13:19:22.318[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0 roll: 0.0 pitch: 0.0[0m
+[1mI1126[0m [32m13:19:22.319[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: -0.00, 0.00, 0.00[0m
+[1mI1126[0m [32m13:19:22.414[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0 roll: 0.0 pitch: 0.0[0m
+[1mI1126[0m [32m13:19:22.415[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: -0.00, 0.00, 0.00[0m
+[1mI1126[0m [32m13:19:22.504[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0 roll: 0.0 pitch: 0.0[0m
+[1mI1126[0m [32m13:19:22.505[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: -0.00, 0.00, 0.00[0m
+[1mI1126[0m [32m13:19:22.594[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0 roll: 0.0 pitch: 0.0[0m
+[1mI1126[0m [32m13:19:22.597[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: -0.00, 0.00, 0.00[0m
+[1mI1126[0m [32m13:19:22.693[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0 roll: 0.0 pitch: 0.0[0m
+[1mI1126[0m [32m13:19:22.694[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: -0.00, 0.00, 0.00[0m
+[1mI1126[0m [32m13:19:22.777[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0 roll: 0.0 pitch: 0.0[0m
+[1mI1126[0m [32m13:19:22.777[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: -0.00, 0.00, 0.00[0m
+[1mI1126[0m [32m13:19:22.865[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0 roll: 0.0 pitch: 0.0[0m
+[1mI1126[0m [32m13:19:22.867[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 0.00, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:22.975[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0 roll: 0.0 pitch: 0.0[0m
+[1mI1126[0m [32m13:19:22.976[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: -0.00, 0.00, 0.00[0m
+[1mI1126[0m [32m13:19:23.073[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0 roll: 0.0 pitch: 0.0[0m
+[1mI1126[0m [32m13:19:23.076[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: -0.00, 0.00, 0.00[0m
+[1mI1126[0m [32m13:19:23.168[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0 roll: 0.0 pitch: 0.0[0m
+[1mI1126[0m [32m13:19:23.170[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: -0.00, 0.00, 0.00[0m
+[1mI1126[0m [32m13:19:23.264[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0 roll: 0.0 pitch: 0.0[0m
+[1mI1126[0m [32m13:19:23.266[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: -0.00, 0.00, 0.00[0m
+[1mI1126[0m [32m13:19:23.345[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0 roll: 0.0 pitch: 0.0[0m
+[1mI1126[0m [32m13:19:23.346[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 0.00, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:23.436[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0 roll: 0.0 pitch: 0.0[0m
+[1mI1126[0m [32m13:19:23.437[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: -0.00, 0.00, 0.00[0m
+[1mI1126[0m [32m13:19:23.557[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0 roll: 0.0 pitch: 0.0[0m
+[1mI1126[0m [32m13:19:23.559[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: -0.00, 0.00, 0.00[0m
+[1mI1126[0m [32m13:19:23.653[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0 roll: 0.0 pitch: 0.0[0m
+[1mI1126[0m [32m13:19:23.655[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 0.00, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:23.739[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Recorded 29 frames, current frame: 200[0m
+[1mI1126[0m [32m13:19:23.739[0m [36mcontainer.py:895[0m] [1m[Record Data ERR] 2024-11-26 13:19:23.739 | INFO     | __main__:save_data:327 - Stopped Carla recording[0m
+[1mI1126[0m [32m13:19:23.740[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] -------------------------------------------- SAVE the JSON LOG DATA---------------[0m
+[1mI1126[0m [32m13:19:23.740[0m [36mcontainer.py:895[0m] [1m[Record Data ERR] 2024-11-26 13:19:23.739 | INFO     | __main__:save_data:330 - ++++++++++++++++++++++++++++++++++++++= the output dir is :, /home/w/workspace/carla_apollo/apollo/modules/carla_bridge/multi_vehicle_fuzz/test_outputs/20241126_131907/test_20241126_131909_v90_w60/original_scenario/carla_records/vehicle_states.json[0m
+[1mI1126[0m [32m13:19:23.766[0m [36mcontainer.py:895[0m] [1m[Record Data ERR] 2024-11-26 13:19:23.766 | INFO     | __main__:save_data:347 - Successfully saved 29 frames to /home/w/workspace/carla_apollo/apollo/modules/carla_bridge/multi_vehicle_fuzz/test_outputs/20241126_131907/test_20241126_131909_v90_w60/original_scenario/carla_records/vehicle_states.json[0m
+[1mI1126[0m [32m13:19:23.767[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0 roll: 0.0 pitch: 0.0[0m
+[1mI1126[0m [32m13:19:23.768[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: -0.00, 0.00, 0.00[0m
+[1mI1126[0m [32m13:19:23.833[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0 roll: 0.0 pitch: 0.0[0m
+[1mI1126[0m [32m13:19:23.835[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: -0.00, 0.00, 0.00[0m
+[1mI1126[0m [32m13:19:23.919[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0 roll: 0.0 pitch: 0.0[0m
+[1mI1126[0m [32m13:19:23.924[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: -0.00, 0.00, 0.00[0m
+[1mI1126[0m [32m13:19:24.009[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0 roll: 0.0 pitch: 0.0[0m
+[1mI1126[0m [32m13:19:24.010[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: -0.00, 0.00, 0.00[0m
+[1mI1126[0m [32m13:19:24.096[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0 roll: 0.0 pitch: 0.0[0m
+[1mI1126[0m [32m13:19:24.098[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 0.00, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:24.191[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0 roll: 0.0 pitch: 0.0[0m
+[1mI1126[0m [32m13:19:24.193[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: -0.00, 0.00, 0.00[0m
+[1mI1126[0m [32m13:19:24.285[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0 roll: 0.0 pitch: 0.0[0m
+[1mI1126[0m [32m13:19:24.290[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: -0.00, 0.00, 0.00[0m
+[1mI1126[0m [32m13:19:24.361[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0 roll: 0.0 pitch: 0.0[0m
+[1mI1126[0m [32m13:19:24.363[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 0.00, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:24.451[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0 roll: 0.0 pitch: 0.0[0m
+[1mI1126[0m [32m13:19:24.452[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: -0.00, 0.00, 0.00[0m
+[1mI1126[0m [32m13:19:24.540[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0 roll: 0.0 pitch: 0.0[0m
+[1mI1126[0m [32m13:19:24.542[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: -0.00, 0.00, 0.00[0m
+[1mI1126[0m [32m13:19:24.635[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0 roll: 0.0 pitch: 0.0[0m
+[1mI1126[0m [32m13:19:24.640[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: -0.00, 0.00, 0.00[0m
+[1mI1126[0m [32m13:19:24.723[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0 roll: 0.0 pitch: 0.0[0m
+[1mI1126[0m [32m13:19:24.725[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: -0.00, 0.00, 0.00[0m
+[1mI1126[0m [32m13:19:24.831[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0 roll: 0.0 pitch: 0.0[0m
+[1mI1126[0m [32m13:19:24.833[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: -0.00, 0.00, 0.00[0m
+[1mI1126[0m [32m13:19:24.923[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0 roll: 0.0 pitch: 0.0[0m
+[1mI1126[0m [32m13:19:24.924[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: -0.00, 0.00, 0.00[0m
+[1mI1126[0m [32m13:19:25.000[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0 roll: 0.0 pitch: 0.0[0m
+[1mI1126[0m [32m13:19:25.002[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: -0.00, 0.00, 0.00[0m
+[1mI1126[0m [32m13:19:25.091[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0 roll: 0.0 pitch: 0.0[0m
+[1mI1126[0m [32m13:19:25.093[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: -0.00, 0.00, 0.00[0m
+[1mI1126[0m [32m13:19:25.185[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0 roll: 0.0 pitch: 0.0[0m
+[1mI1126[0m [32m13:19:25.187[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: -0.00, 0.00, 0.00[0m
+[1mI1126[0m [32m13:19:25.287[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0 roll: 0.0 pitch: 0.0[0m
+[1mI1126[0m [32m13:19:25.289[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: -0.00, 0.00, 0.00[0m
+[1mI1126[0m [32m13:19:25.382[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0 roll: 0.0 pitch: 0.0[0m
+[1mI1126[0m [32m13:19:25.384[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 0.00, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:25.476[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0 roll: 0.0 pitch: 0.0[0m
+[1mI1126[0m [32m13:19:25.478[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 0.00, 0.00, 0.00[0m
+[1mI1126[0m [32m13:19:25.578[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0 roll: 0.0 pitch: 0.0[0m
+[1mI1126[0m [32m13:19:25.578[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 0.00, 0.00, 0.00[0m
+[1mI1126[0m [32m13:19:25.651[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0 roll: 0.0 pitch: 0.0[0m
+[1mI1126[0m [32m13:19:25.653[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: -0.00, 0.00, 0.00[0m
+[1mI1126[0m [32m13:19:25.740[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0 roll: 0.0 pitch: 0.0[0m
+[1mI1126[0m [32m13:19:25.745[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: -0.00, 0.00, 0.00[0m
+[1mI1126[0m [32m13:19:25.833[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0 roll: 0.0 pitch: 0.0[0m
+[1mI1126[0m [32m13:19:25.836[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 0.00, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:25.932[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0 roll: 0.0 pitch: 0.0[0m
+[1mI1126[0m [32m13:19:25.935[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 0.00, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:26.025[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0 roll: 0.0 pitch: 0.0[0m
+[1mI1126[0m [32m13:19:26.026[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 0.00, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:26.121[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0 roll: 0.0 pitch: 0.0[0m
+[1mI1126[0m [32m13:19:26.123[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: -0.00, 0.00, 0.00[0m
+[1mI1126[0m [32m13:19:26.212[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0 roll: 0.0 pitch: 0.0[0m
+[1mI1126[0m [32m13:19:26.214[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: -0.00, 0.00, 0.00[0m
+[1mI1126[0m [32m13:19:26.303[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0 roll: 0.0 pitch: 0.0[0m
+[1mI1126[0m [32m13:19:26.305[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: -0.00, 0.00, 0.00[0m
+[1mI1126[0m [32m13:19:26.449[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0 roll: 0.0 pitch: 0.0[0m
+[1mI1126[0m [32m13:19:26.450[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: -0.00, 0.00, 0.00[0m
+[1mI1126[0m [32m13:19:26.567[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0 roll: 0.0 pitch: 0.0[0m
+[1mI1126[0m [32m13:19:26.568[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 0.00, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:26.685[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0 roll: 0.0 pitch: 0.0[0m
+[1mI1126[0m [32m13:19:26.686[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: -0.00, 0.00, 0.00[0m
+[1mI1126[0m [32m13:19:26.832[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0 roll: 0.0 pitch: 0.0[0m
+[1mI1126[0m [32m13:19:26.833[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: -0.00, 0.00, 0.00[0m
+[1mI1126[0m [32m13:19:26.979[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0 roll: 0.0 pitch: 0.0[0m
+[1mI1126[0m [32m13:19:26.980[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: -0.00, 0.00, 0.00[0m
+[1mI1126[0m [32m13:19:27.128[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0 roll: 0.0 pitch: 0.0[0m
+[1mI1126[0m [32m13:19:27.128[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: -0.00, 0.00, 0.00[0m
+[1mI1126[0m [32m13:19:27.283[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0 roll: 0.0 pitch: 0.0[0m
+[1mI1126[0m [32m13:19:27.284[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: -0.00, 0.00, 0.00[0m
+[1mI1126[0m [32m13:19:27.404[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0 roll: 0.0 pitch: 0.0[0m
+[1mI1126[0m [32m13:19:27.404[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 0.00, 0.00, 0.00[0m
+[1mI1126[0m [32m13:19:27.526[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0 roll: 0.0 pitch: 0.0[0m
+[1mI1126[0m [32m13:19:27.527[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 0.00, 0.00, 0.00[0m
+[1mI1126[0m [32m13:19:27.641[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0 roll: 0.0 pitch: 0.0[0m
+[1mI1126[0m [32m13:19:27.643[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: -0.00, 0.00, 0.00[0m
+[1mI1126[0m [32m13:19:27.775[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0 roll: 0.0 pitch: 0.0[0m
+[1mI1126[0m [32m13:19:27.777[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: -0.00, 0.00, 0.00[0m
+[1mI1126[0m [32m13:19:27.903[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0 roll: 0.0 pitch: 0.0[0m
+[1mI1126[0m [32m13:19:27.905[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: -0.00, 0.00, 0.00[0m
+[1mI1126[0m [32m13:19:28.029[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0 roll: 0.0 pitch: 0.0[0m
+[1mI1126[0m [32m13:19:28.031[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: -0.00, 0.00, 0.00[0m
+[1mI1126[0m [32m13:19:28.139[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.00018310546875 roll: 0.0 pitch: 0.004104943480342627[0m
+[1mI1126[0m [32m13:19:28.142[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 0.16, 0.00, 0.00[0m
+[1mI1126[0m [32m13:19:28.278[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.0003051757230423391 roll: 0.0 pitch: 0.03545551002025604[0m
+[1mI1126[0m [32m13:19:28.279[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 0.52, 0.00, 0.00[0m
+[1mI1126[0m [32m13:19:28.399[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.00036621090839616954 roll: 6.3528773353027645e-06 pitch: 0.06774181127548218[0m
+[1mI1126[0m [32m13:19:28.400[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 0.84, 0.00, -0.00[0m
+[1mI1126[0m [32m13:19:28.501[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.00039672848652116954 roll: 1.1497420018713456e-05 pitch: 0.0910600796341896[0m
+[1mI1126[0m [32m13:19:28.503[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 1.09, 0.00, -0.00[0m
+[1mI1126[0m [32m13:19:28.611[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.001190185546875 roll: 3.144535003229976e-05 pitch: 0.09807468205690384[0m
+[1mI1126[0m [32m13:19:28.611[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 1.21, -0.00, -0.00[0m
+[1mI1126[0m [32m13:19:28.736[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.0009765624417923391 roll: 3.095530701102689e-05 pitch: 0.09728921204805374[0m
+[1mI1126[0m [32m13:19:28.737[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 1.39, -0.00, -0.00[0m
+[1mI1126[0m [32m13:19:28.847[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.0008544920710846782 roll: 2.065910302917473e-05 pitch: 0.09639445692300797[0m
+[1mI1126[0m [32m13:19:28.847[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 1.54, -0.00, -0.00[0m
+[1mI1126[0m [32m13:19:28.950[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.0008544920710846782 roll: 1.570178756082896e-05 pitch: 0.09666766226291656[0m
+[1mI1126[0m [32m13:19:28.951[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 1.74, -0.00, -0.00[0m
+[1mI1126[0m [32m13:19:29.056[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.0008850097074173391 roll: 1.3735914762946777e-05 pitch: 0.0976443812251091[0m
+[1mI1126[0m [32m13:19:29.057[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 1.92, -0.00, -0.00[0m
+[1mI1126[0m [32m13:19:29.212[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.0024719233624637127 roll: 2.6384639568277635e-05 pitch: 0.10105947405099869[0m
+[1mI1126[0m [32m13:19:29.215[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 2.15, -0.00, -0.00[0m
+[1mI1126[0m [32m13:19:29.356[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0035862785298377275 roll: -2.0355585435543472e-13 pitch: 0.10683781653642654[0m
+[1mI1126[0m [32m13:19:29.356[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 2.38, 0.00, -0.00[0m
+[1mI1126[0m [32m13:19:29.462[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0021613282151520252 roll: 0.0 pitch: 0.11448762565851212[0m
+[1mI1126[0m [32m13:19:29.465[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 2.67, 0.00, -0.00[0m
+[1mI1126[0m [32m13:19:29.590[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0027830577455461025 roll: 6.01826686761342e-05 pitch: 0.1235307976603508[0m
+[1mI1126[0m [32m13:19:29.592[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 2.95, -0.00, -0.00[0m
+[1mI1126[0m [32m13:19:29.697[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0021436582319438457 roll: 0.00012619185145013034 pitch: 0.12679561972618103[0m
+[1mI1126[0m [32m13:19:29.699[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.15, -0.00, -0.00[0m
+[1mI1126[0m [32m13:19:29.861[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: 0.0011597919510677457 roll: 0.00017394298629369587 pitch: 0.12143392860889435[0m
+[1mI1126[0m [32m13:19:29.863[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.29, -0.00, -0.00[0m
+[1mI1126[0m [32m13:19:29.979[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -9.1552734375e-05 roll: 0.00022453816200140864 pitch: 0.11170090734958649[0m
+[1mI1126[0m [32m13:19:29.980[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.41, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:30.159[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.0014038084773346782 roll: 0.0002246905060019344 pitch: 0.10042426735162735[0m
+[1mI1126[0m [32m13:19:30.160[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.51, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:30.280[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.0026855466421693563 roll: 0.00020611150830518454 pitch: 0.08963257074356079[0m
+[1mI1126[0m [32m13:19:30.281[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.61, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:30.425[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.0039062497671693563 roll: 0.00017866934649646282 pitch: 0.0774884894490242[0m
+[1mI1126[0m [32m13:19:30.425[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.64, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:30.576[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.0050048828125 roll: 0.00014190003275871277 pitch: 0.057687774300575256[0m
+[1mI1126[0m [32m13:19:30.577[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.56, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:30.702[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.005981444381177425 roll: 0.00010596396896289662 pitch: 0.03133007511496544[0m
+[1mI1126[0m [32m13:19:30.704[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.41, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:30.814[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.006866454612463713 roll: 8.226127101806924e-05 pitch: 0.004303019028156996[0m
+[1mI1126[0m [32m13:19:30.817[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.24, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:30.932[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.007659912575036287 roll: 6.210449646459892e-05 pitch: -0.02050422690808773[0m
+[1mI1126[0m [32m13:19:30.935[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.05, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:31.056[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.008361815474927425 roll: 3.631681829574518e-05 pitch: -0.04059181362390518[0m
+[1mI1126[0m [32m13:19:31.057[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 2.87, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:31.160[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.00897216796875 roll: 1.6411684555350803e-05 pitch: -0.055720679461956024[0m
+[1mI1126[0m [32m13:19:31.163[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 2.69, -0.00, -0.00[0m
+[1mI1126[0m [32m13:19:31.270[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.009552001953125 roll: 6.00495468461304e-06 pitch: -0.06509169936180115[0m
+[1mI1126[0m [32m13:19:31.271[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 2.55, -0.00, -0.00[0m
+[1mI1126[0m [32m13:19:31.415[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.010070799849927425 roll: 0.0 pitch: -0.07092467695474625[0m
+[1mI1126[0m [32m13:19:31.416[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 2.39, -0.00, -0.00[0m
+[1mI1126[0m [32m13:19:31.526[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.010528565384447575 roll: 0.0 pitch: -0.07354747503995895[0m
+[1mI1126[0m [32m13:19:31.526[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 2.26, -0.00, -0.00[0m
+[1mI1126[0m [32m13:19:31.643[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.010986327193677425 roll: 0.0 pitch: -0.07410071790218353[0m
+[1mI1126[0m [32m13:19:31.645[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 2.12, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:31.657[0m [36mcontainer.py:1165[0m] [1mTerminated routing handler with PID 23645[0m
+[1mI1126[0m [32m13:19:31.776[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.011413575150072575 roll: 8.142226584802181e-13 pitch: -0.0707675889134407[0m
+[1mI1126[0m [32m13:19:31.778[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 2.05, -0.00, -0.00[0m
+[1mI1126[0m [32m13:19:31.911[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.011840817518532276 roll: 0.0 pitch: -0.06482531875371933[0m
+[1mI1126[0m [32m13:19:31.912[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 1.98, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:32.030[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.012268065474927425 roll: 4.384802991808101e-07 pitch: -0.05462785065174103[0m
+[1mI1126[0m [32m13:19:32.031[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 1.99, -0.00, -0.00[0m
+[1mI1126[0m [32m13:19:32.159[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.012695311568677425 roll: 5.333096396498149e-06 pitch: -0.039949774742126465[0m
+[1mI1126[0m [32m13:19:32.159[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 2.04, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:32.295[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.013153075240552425 roll: 1.3536259757529479e-05 pitch: -0.019226981326937675[0m
+[1mI1126[0m [32m13:19:32.296[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 2.19, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:32.419[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.013641357421875 roll: 2.538258740969468e-05 pitch: 0.005935434252023697[0m
+[1mI1126[0m [32m13:19:32.420[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 2.39, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:32.584[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.014160153456032276 roll: 3.278153235442005e-05 pitch: 0.034950077533721924[0m
+[1mI1126[0m [32m13:19:32.586[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 2.68, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:32.851[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.01464843563735485 roll: 3.8450449210358784e-05 pitch: 0.06365052610635757[0m
+[1mI1126[0m [32m13:19:32.852[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 2.96, -0.00, -0.00[0m
+[1mI1126[0m [32m13:19:32.975[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.015167236328125 roll: 4.569729935610667e-05 pitch: 0.0831507220864296[0m
+[1mI1126[0m [32m13:19:32.978[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.18, -0.00, -0.00[0m
+[1mI1126[0m [32m13:19:33.103[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.01565551571547985 roll: 4.940842336509377e-05 pitch: 0.09003555029630661[0m
+[1mI1126[0m [32m13:19:33.106[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.31, -0.00, -0.00[0m
+[1mI1126[0m [32m13:19:33.221[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.016143798828125 roll: 5.210691597312689e-05 pitch: 0.08888807892799377[0m
+[1mI1126[0m [32m13:19:33.223[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.43, -0.00, -0.00[0m
+[1mI1126[0m [32m13:19:33.351[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.016632080078125 roll: 5.3723346354672685e-05 pitch: 0.08330781012773514[0m
+[1mI1126[0m [32m13:19:33.356[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.52, -0.00, -0.00[0m
+[1mI1126[0m [32m13:19:33.491[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.01712036319077015 roll: 5.498784958035685e-05 pitch: 0.07617026567459106[0m
+[1mI1126[0m [32m13:19:33.492[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.61, -0.00, -0.00[0m
+[1mI1126[0m [32m13:19:33.654[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.01760864071547985 roll: 5.6497683544876054e-05 pitch: 0.06882781535387039[0m
+[1mI1126[0m [32m13:19:33.655[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.69, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:33.792[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.018096918240189552 roll: 5.8630153944250196e-05 pitch: 0.06291969865560532[0m
+[1mI1126[0m [32m13:19:33.794[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.78, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:33.959[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.018585205078125 roll: 5.2661343943327665e-05 pitch: 0.05919724702835083[0m
+[1mI1126[0m [32m13:19:33.960[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.87, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:34.078[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.01904296875 roll: 5.289435284794308e-05 pitch: 0.057885851711034775[0m
+[1mI1126[0m [32m13:19:34.081[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.98, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:34.227[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.01953125 roll: 6.104503700044006e-05 pitch: 0.05504449084401131[0m
+[1mI1126[0m [32m13:19:34.228[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 4.03, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:34.341[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.02001952938735485 roll: 6.086867506382987e-05 pitch: 0.04326924681663513[0m
+[1mI1126[0m [32m13:19:34.341[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.97, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:34.472[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.02047729305922985 roll: 5.588600106420927e-05 pitch: 0.022635245695710182[0m
+[1mI1126[0m [32m13:19:34.473[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.82, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:34.606[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.02090453915297985 roll: 5.0720147555693984e-05 pitch: -0.001557283103466034[0m
+[1mI1126[0m [32m13:19:34.606[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.65, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:34.720[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.02130126766860485 roll: 4.147526124143042e-05 pitch: -0.02542196214199066[0m
+[1mI1126[0m [32m13:19:34.720[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.44, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:34.840[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.02166747860610485 roll: 3.316786387586035e-05 pitch: -0.04574860632419586[0m
+[1mI1126[0m [32m13:19:34.841[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.25, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:34.948[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.022003173828125 roll: 2.6106799850822426e-05 pitch: -0.06218886747956276[0m
+[1mI1126[0m [32m13:19:34.949[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.04, -0.00, -0.00[0m
+[1mI1126[0m [32m13:19:35.050[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.0223388671875 roll: 1.681991489022039e-05 pitch: -0.07397777587175369[0m
+[1mI1126[0m [32m13:19:35.051[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 2.86, -0.00, -0.00[0m
+[1mI1126[0m [32m13:19:35.169[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.02264404296875 roll: 1.1974375411227811e-05 pitch: -0.08254966139793396[0m
+[1mI1126[0m [32m13:19:35.170[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 2.66, -0.00, -0.00[0m
+[1mI1126[0m [32m13:19:35.285[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.02294921688735485 roll: 8.002680260688066e-06 pitch: -0.08770645409822464[0m
+[1mI1126[0m [32m13:19:35.287[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 2.49, -0.00, -0.00[0m
+[1mI1126[0m [32m13:19:35.424[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.023223876953125 roll: 3.531815991664189e-06 pitch: -0.0910259261727333[0m
+[1mI1126[0m [32m13:19:35.425[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 2.30, -0.00, -0.00[0m
+[1mI1126[0m [32m13:19:35.560[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.023468017578125 roll: 6.834001737843209e-07 pitch: -0.09188652783632278[0m
+[1mI1126[0m [32m13:19:35.560[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 2.14, -0.00, -0.00[0m
+[1mI1126[0m [32m13:19:35.661[0m [36mcontainer.py:895[0m] [1m[Record Data ERR] 2024-11-26 13:19:35.661 | INFO     | __main__:save_data:327 - Stopped Carla recording[0m
+[1mI1126[0m [32m13:19:35.662[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Recorded 129 frames, current frame: 300[0m
+[1mI1126[0m [32m13:19:35.663[0m [36mcontainer.py:895[0m] [1m[Record Data ERR] 2024-11-26 13:19:35.663 | INFO     | __main__:save_data:330 - ++++++++++++++++++++++++++++++++++++++= the output dir is :, /home/w/workspace/carla_apollo/apollo/modules/carla_bridge/multi_vehicle_fuzz/test_outputs/20241126_131907/test_20241126_131909_v90_w60/original_scenario/carla_records/vehicle_states.json[0m
+[1mI1126[0m [32m13:19:35.663[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] -------------------------------------------- SAVE the JSON LOG DATA---------------[0m
+[1mI1126[0m [32m13:19:35.885[0m [36mcontainer.py:895[0m] [1m[Record Data ERR] 2024-11-26 13:19:35.885 | INFO     | __main__:save_data:347 - Successfully saved 129 frames to /home/w/workspace/carla_apollo/apollo/modules/carla_bridge/multi_vehicle_fuzz/test_outputs/20241126_131907/test_20241126_131909_v90_w60/original_scenario/carla_records/vehicle_states.json[0m
+[1mI1126[0m [32m13:19:35.886[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.024200439453125 roll: 0.0 pitch: -0.07428513467311859[0m
+[1mI1126[0m [32m13:19:35.889[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 1.87, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:36.041[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.02447509579360485 roll: 2.7661332069328637e-07 pitch: -0.05856204032897949[0m
+[1mI1126[0m [32m13:19:36.041[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 1.92, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:36.171[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.0247497521340847 roll: 5.036959919380024e-06 pitch: -0.03885011374950409[0m
+[1mI1126[0m [32m13:19:36.171[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 2.00, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:36.314[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.0250244140625 roll: 1.0287711120327003e-05 pitch: -0.015190339647233486[0m
+[1mI1126[0m [32m13:19:36.314[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 2.16, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:36.444[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.02532958984375 roll: 1.487992540205596e-05 pitch: 0.0101974718272686[0m
+[1mI1126[0m [32m13:19:36.445[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 2.35, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:36.546[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.02563476376235485 roll: 2.1870841010240838e-05 pitch: 0.03823539614677429[0m
+[1mI1126[0m [32m13:19:36.549[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 2.64, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:36.703[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.02593993954360485 roll: 2.0571800632751547e-05 pitch: 0.06576788425445557[0m
+[1mI1126[0m [32m13:19:36.705[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 2.92, -0.00, -0.00[0m
+[1mI1126[0m [32m13:19:36.850[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.02618408016860485 roll: 1.7150005078292452e-05 pitch: 0.08442113548517227[0m
+[1mI1126[0m [32m13:19:36.852[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.13, -0.00, -0.00[0m
+[1mI1126[0m [32m13:19:36.997[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.026397705078125 roll: 1.470293318561744e-05 pitch: 0.09054781496524811[0m
+[1mI1126[0m [32m13:19:37.000[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.26, -0.00, -0.00[0m
+[1mI1126[0m [32m13:19:37.119[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.026580810546875 roll: 1.4824699974269606e-05 pitch: 0.0888129472732544[0m
+[1mI1126[0m [32m13:19:37.122[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.39, -0.00, -0.00[0m
+[1mI1126[0m [32m13:19:37.231[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.0267333947122097 roll: 1.4163394553179387e-05 pitch: 0.08677754551172256[0m
+[1mI1126[0m [32m13:19:37.232[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.55, -0.00, -0.00[0m
+[1mI1126[0m [32m13:19:37.369[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.026947021484375 roll: 2.011195829254575e-05 pitch: 0.09036339819431305[0m
+[1mI1126[0m [32m13:19:37.369[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.77, -0.00, -0.00[0m
+[1mI1126[0m [32m13:19:37.576[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.027130126953125 roll: 2.542324727983214e-05 pitch: 0.09213924407958984[0m
+[1mI1126[0m [32m13:19:37.577[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.91, -0.00, -0.00[0m
+[1mI1126[0m [32m13:19:37.694[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.02734375 roll: 2.953426883323118e-05 pitch: 0.08936619013547897[0m
+[1mI1126[0m [32m13:19:37.695[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 4.04, -0.00, -0.00[0m
+[1mI1126[0m [32m13:19:37.825[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.02755737118422985 roll: 3.210716386092827e-05 pitch: 0.0860808715224266[0m
+[1mI1126[0m [32m13:19:37.825[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 4.18, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:37.947[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.02774048037827015 roll: 3.453857425483875e-05 pitch: 0.08334196358919144[0m
+[1mI1126[0m [32m13:19:37.950[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 4.31, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:38.056[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.0279541015625 roll: 3.610605199355632e-05 pitch: 0.07958535850048065[0m
+[1mI1126[0m [32m13:19:38.058[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 4.42, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:38.267[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.02832031063735485 roll: 7.027432002360001e-05 pitch: 0.07127302139997482[0m
+[1mI1126[0m [32m13:19:38.270[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 4.46, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:38.377[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.0287475548684597 roll: 8.56922342791222e-05 pitch: 0.05724381282925606[0m
+[1mI1126[0m [32m13:19:38.380[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 4.44, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:38.563[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.029144281521439552 roll: 7.425884541589767e-05 pitch: 0.040093209594488144[0m
+[1mI1126[0m [32m13:19:38.565[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 4.38, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:38.698[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.02947997860610485 roll: 6.0379039496183395e-05 pitch: 0.02288796193897724[0m
+[1mI1126[0m [32m13:19:38.698[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 4.31, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:38.815[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.02981567196547985 roll: 5.086922465125099e-05 pitch: 0.009514452889561653[0m
+[1mI1126[0m [32m13:19:38.816[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 4.27, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:38.944[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.0301208458840847 roll: 4.332077514845878e-05 pitch: 0.0008127924520522356[0m
+[1mI1126[0m [32m13:19:38.945[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 4.24, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:39.079[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.0303955040872097 roll: 2.9379287298070267e-05 pitch: -0.004364490509033203[0m
+[1mI1126[0m [32m13:19:39.082[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 4.21, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:39.181[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.030609123408794403 roll: 1.8687498595681973e-05 pitch: -0.010258943773806095[0m
+[1mI1126[0m [32m13:19:39.209[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 4.14, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:39.294[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.03076171688735485 roll: 9.52471873461036e-06 pitch: -0.017212076112627983[0m
+[1mI1126[0m [32m13:19:39.298[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 4.06, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:39.444[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.03091430477797985 roll: 2.9281427487148903e-06 pitch: -0.024131057783961296[0m
+[1mI1126[0m [32m13:19:39.447[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.97, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:39.577[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.0310058556497097 roll: -8.142220621690233e-13 pitch: -0.029444944113492966[0m
+[1mI1126[0m [32m13:19:39.580[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.89, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:39.706[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.031097406521439552 roll: -8.142221705892405e-13 pitch: -0.032197508960962296[0m
+[1mI1126[0m [32m13:19:39.708[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.83, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:39.901[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.031188959255814552 roll: -8.142221705892405e-13 pitch: -0.03149399906396866[0m
+[1mI1126[0m [32m13:19:39.902[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.79, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:40.023[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.031219474971294403 roll: -3.051757266803179e-05 pitch: -0.029998188838362694[0m
+[1mI1126[0m [32m13:19:40.024[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.75, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:40.165[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.031188959255814552 roll: -3.051757266803179e-05 pitch: -0.02782618999481201[0m
+[1mI1126[0m [32m13:19:40.165[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.72, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:40.271[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.03112792782485485 roll: -3.051757266803179e-05 pitch: -0.024479396641254425[0m
+[1mI1126[0m [32m13:19:40.272[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.70, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:40.404[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.03106689453125 roll: -3.051757266803179e-05 pitch: -0.019288452342152596[0m
+[1mI1126[0m [32m13:19:40.404[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.72, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:40.636[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.031005859375 roll: -3.051757266803179e-05 pitch: -0.011324453167617321[0m
+[1mI1126[0m [32m13:19:40.637[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.76, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:40.822[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.030944816768169403 roll: -3.051757266803179e-05 pitch: -0.003968339879065752[0m
+[1mI1126[0m [32m13:19:40.824[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.80, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:40.986[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.030883781611919403 roll: -3.051757266803179e-05 pitch: 0.001857811352238059[0m
+[1mI1126[0m [32m13:19:40.987[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.83, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:41.132[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.030822748318314552 roll: 0.0 pitch: 0.003777094418182969[0m
+[1mI1126[0m [32m13:19:41.133[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.82, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:41.256[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.0307311974465847 roll: 2.5444436054650188e-14 pitch: 0.0009767169831320643[0m
+[1mI1126[0m [32m13:19:41.257[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.77, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:41.368[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.030639642849564552 roll: 0.0 pitch: -0.004487433936446905[0m
+[1mI1126[0m [32m13:19:41.368[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.72, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:41.466[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.03057861141860485 roll: 0.0 pitch: -0.010716565884649754[0m
+[1mI1126[0m [32m13:19:41.467[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.65, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:41.565[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.03051757626235485 roll: 0.0 pitch: -0.014493661001324654[0m
+[1mI1126[0m [32m13:19:41.566[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.62, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:41.672[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.03048705868422985 roll: 0.0 pitch: -0.014773698523640633[0m
+[1mI1126[0m [32m13:19:41.673[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.62, -0.00, -0.00[0m
+[1mI1126[0m [32m13:19:41.760[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.03042602352797985 roll: 0.0 pitch: -0.01047067902982235[0m
+[1mI1126[0m [32m13:19:41.762[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.66, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:41.864[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.030364984646439552 roll: 0.0 pitch: -0.004063962493091822[0m
+[1mI1126[0m [32m13:19:41.869[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.70, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:42.042[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.030273431912064552 roll: 0.0 pitch: 0.0027798868250101805[0m
+[1mI1126[0m [32m13:19:42.042[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.75, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:42.172[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.0301818810403347 roll: -3.0517569030052982e-05 pitch: 0.00707607576623559[0m
+[1mI1126[0m [32m13:19:42.172[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.76, -0.00, -0.00[0m
+[1mI1126[0m [32m13:19:42.315[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.030059807002544403 roll: -3.051757266803179e-05 pitch: 0.006700415164232254[0m
+[1mI1126[0m [32m13:19:42.316[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.75, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:42.435[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.0299072228372097 roll: -3.051757266803179e-05 pitch: 0.0022403020411729813[0m
+[1mI1126[0m [32m13:19:42.438[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.70, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:42.614[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.029754633083939552 roll: -3.0517569030052982e-05 pitch: -0.003968339879065752[0m
+[1mI1126[0m [32m13:19:42.616[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.64, -0.00, -0.00[0m
+[1mI1126[0m [32m13:19:42.717[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.0295715294778347 roll: -3.051757266803179e-05 pitch: -0.010163321159780025[0m
+[1mI1126[0m [32m13:19:42.718[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.59, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:42.805[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.0293884240090847 roll: -3.051757266803179e-05 pitch: -0.013824301771819592[0m
+[1mI1126[0m [32m13:19:42.807[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.56, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:42.898[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.02920532040297985 roll: -3.0517576306010596e-05 pitch: -0.014678075909614563[0m
+[1mI1126[0m [32m13:19:42.900[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.54, -0.00, -0.00[0m
+[1mI1126[0m [32m13:19:43.022[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.029052728787064552 roll: -3.0517569030052982e-05 pitch: -0.010559472255408764[0m
+[1mI1126[0m [32m13:19:43.024[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.59, -0.00, -0.00[0m
+[1mI1126[0m [32m13:19:43.126[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.028839105740189552 roll: -3.051757266803179e-05 pitch: -0.002930151065811515[0m
+[1mI1126[0m [32m13:19:43.128[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.64, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:43.238[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.028656000271439552 roll: -3.0517569030052982e-05 pitch: 0.0020012452732771635[0m
+[1mI1126[0m [32m13:19:43.240[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.65, -0.00, -0.00[0m
+[1mI1126[0m [32m13:19:43.358[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.0284728966653347 roll: -3.0517569030052982e-05 pitch: 0.001249924534931779[0m
+[1mI1126[0m [32m13:19:43.360[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.61, -0.00, -0.00[0m
+[1mI1126[0m [32m13:19:43.453[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.028259271755814552 roll: -3.051757266803179e-05 pitch: -0.0036336604971438646[0m
+[1mI1126[0m [32m13:19:43.454[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.55, -0.00, -0.00[0m
+[1mI1126[0m [32m13:19:43.591[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.0280151329934597 roll: -3.0517569030052982e-05 pitch: -0.010716565884649754[0m
+[1mI1126[0m [32m13:19:43.592[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.47, -0.00, 0.00[0m
+Executing command: docker exec -u $USER apollo_dev_w pkill --signal SIGINT -f 'cyber_recorder record'
+[1mI1126[0m [32m13:19:43.669[0m [36mcontainer.py:1463[0m] [1mStopping Apollo recorder...[0m
+[1mI1126[0m [32m13:19:43.699[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.02777099795639515 roll: -3.0517578125e-05 pitch: -0.017423812299966812[0m
+[1mI1126[0m [32m13:19:43.709[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.40, -0.00, 0.00[0m
+----result CompletedProcess(args="docker exec -u $USER apollo_dev_w pkill --signal SIGINT -f 'cyber_recorder record'", returncode=0, stdout='', stderr='')
+Command executed successfully: 
+[1mI1126[0m [32m13:19:43.869[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.02749633975327015 roll: -3.0517578125e-05 pitch: -0.02298358455300331[0m
+[1mI1126[0m [32m13:19:43.871[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.33, -0.00, -0.00[0m
+[1mI1126[0m [32m13:19:44.013[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.027252197265625 roll: -3.0517578125e-05 pitch: -0.02539464272558689[0m
+[1mI1126[0m [32m13:19:44.015[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.29, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:44.173[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.02697754092514515 roll: -3.0517578125e-05 pitch: -0.023625623434782028[0m
+[1mI1126[0m [32m13:19:44.175[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.28, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:44.306[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.02670288272202015 roll: -3.0517578125e-05 pitch: -0.017546754330396652[0m
+[1mI1126[0m [32m13:19:44.308[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.32, -0.00, -0.00[0m
+[1mI1126[0m [32m13:19:44.465[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.02642822079360485 roll: -3.0517578125e-05 pitch: -0.009125132113695145[0m
+[1mI1126[0m [32m13:19:44.466[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.37, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:44.608[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.026153564453125 roll: -3.0517576306010596e-05 pitch: -0.0004234717052895576[0m
+[1mI1126[0m [32m13:19:44.608[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.42, -0.00, -0.00[0m
+[1mI1126[0m [32m13:19:44.758[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.02587890625 roll: -3.0517576306010596e-05 pitch: 0.003551698289811611[0m
+[1mI1126[0m [32m13:19:44.758[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.41, -0.00, -0.00[0m
+[1mI1126[0m [32m13:19:45.034[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.025543212890625 roll: -3.0517576306010596e-05 pitch: 0.002397396368905902[0m
+[1mI1126[0m [32m13:19:45.035[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.39, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:45.220[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.02520751953125 roll: -3.0517578125e-05 pitch: -0.002868679352104664[0m
+[1mI1126[0m [32m13:19:45.220[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.32, -0.00, -0.00[0m
+[1mI1126[0m [32m13:19:45.404[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.02484130859375 roll: -3.0517578125e-05 pitch: -0.009794490411877632[0m
+[1mI1126[0m [32m13:19:45.404[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.25, -0.00, 0.00[0m
+[1mI1126[0m [32m13:19:45.543[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.024505615234375 roll: -3.051758176297881e-05 pitch: -0.017335020005702972[0m
+[1mI1126[0m [32m13:19:45.545[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.16, -0.00, -0.00[0m
+[1mI1126[0m [32m13:19:45.679[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.02413940615952015 roll: -3.0517578125e-05 pitch: -0.023926151916384697[0m
+[1mI1126[0m [32m13:19:45.681[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 3.08, -0.00, 0.00[0m
+Executing command: docker exec -u $USER apollo_dev_w bash -c 'ps aux | grep "cyber_recorder.*record" | grep -v grep | wc -l'
+[1mI1126[0m [32m13:19:45.837[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.02377319149672985 roll: -3.051757266803179e-05 pitch: -0.029820604249835014[0m
+[1mI1126[0m [32m13:19:45.838[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 2.99, -0.00, -0.00[0m
+[1mI1126[0m [32m13:19:45.962[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.023406976833939552 roll: -3.0517576306010596e-05 pitch: -0.03421241417527199[0m
+[1mI1126[0m [32m13:19:45.962[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 2.91, -0.00, -0.00[0m
+----result CompletedProcess(args='docker exec -u $USER apollo_dev_w bash -c \'ps aux | grep "cyber_recorder.*record" | grep -v grep | wc -l\'', returncode=0, stdout='4\n', stderr='')
+Command executed successfully: 4
+
+Executing command: docker exec -u $USER apollo_dev_w pkill -9 -f 'cyber_recorder record'
+[33m[1mW1126[0m [32m13:19:45.998[0m [36mcontainer.py:1470[0m] [1mApollo recorder still running, force killing...[0m
+----result CompletedProcess(args="docker exec -u $USER apollo_dev_w pkill -9 -f 'cyber_recorder record'", returncode=0, stdout='', stderr='')
+Command executed successfully: 
+[1mI1126[0m [32m13:19:46.086[0m [36mcontainer.py:1473[0m] [1mApollo recorder stopped[0m
+[1mI1126[0m [32m13:19:46.087[0m [36mcontainer.py:1072[0m] [1mStopping record data process[0m
+[1mI1126[0m [32m13:19:46.098[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [====ANGLE=====]recorded ego_vehicle_angle: yaw: -0.02310180477797985 roll: -3.0517576306010596e-05 pitch: -0.037477247416973114[0m
+[1mI1126[0m [32m13:19:46.101[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Ego Vehicle Speed: 2.82, -0.00, -0.00[0m
+[1mI1126[0m [32m13:19:46.202[0m [36mcontainer.py:895[0m] [1m[Record Data ERR] 2024-11-26 13:19:46.202 | INFO     | __main__:save_data:327 - Stopped Carla recording[0m
+[1mI1126[0m [32m13:19:46.203[0m [36mcontainer.py:895[0m] [1m[Record Data ERR] 2024-11-26 13:19:46.202 | INFO     | __main__:save_data:330 - ++++++++++++++++++++++++++++++++++++++= the output dir is :, /home/w/workspace/carla_apollo/apollo/modules/carla_bridge/multi_vehicle_fuzz/test_outputs/20241126_131907/test_20241126_131909_v90_w60/original_scenario/carla_records/vehicle_states.json[0m
+[1mI1126[0m [32m13:19:46.204[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [0m
+[1mI1126[0m [32m13:19:46.205[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Received signal 2, saving data and cleaning up...[0m
+[1mI1126[0m [32m13:19:46.205[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [0m
+[1mI1126[0m [32m13:19:46.206[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Cleaning up...[0m
+[1mI1126[0m [32m13:19:46.206[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] -------------------------------------------- SAVE the JSON LOG DATA---------------[0m
+[1mI1126[0m [32m13:19:46.555[0m [36mcontainer.py:895[0m] [1m[Record Data ERR] 2024-11-26 13:19:46.554 | INFO     | __main__:save_data:347 - Successfully saved 204 frames to /home/w/workspace/carla_apollo/apollo/modules/carla_bridge/multi_vehicle_fuzz/test_outputs/20241126_131907/test_20241126_131909_v90_w60/original_scenario/carla_records/vehicle_states.json[0m
+[1mI1126[0m [32m13:19:46.555[0m [36mcontainer.py:895[0m] [1m[Record Data ERR] 2024-11-26 13:19:46.555 | INFO     | __main__:save_data:327 - Stopped Carla recording[0m
+[1mI1126[0m [32m13:19:46.555[0m [36mcontainer.py:895[0m] [1m[Record Data ERR] 2024-11-26 13:19:46.555 | INFO     | __main__:save_data:330 - ++++++++++++++++++++++++++++++++++++++= the output dir is :, /home/w/workspace/carla_apollo/apollo/modules/carla_bridge/multi_vehicle_fuzz/test_outputs/20241126_131907/test_20241126_131909_v90_w60/original_scenario/carla_records/vehicle_states.json[0m
+[1mI1126[0m [32m13:19:46.556[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Cleanup completed[0m
+[1mI1126[0m [32m13:19:46.556[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [0m
+[1mI1126[0m [32m13:19:46.557[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Cleaning up...[0m
+[1mI1126[0m [32m13:19:46.557[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] -------------------------------------------- SAVE the JSON LOG DATA---------------[0m
+[1mI1126[0m [32m13:19:46.828[0m [36mcontainer.py:895[0m] [1m[Record Data ERR] 2024-11-26 13:19:46.827 | INFO     | __main__:save_data:347 - Successfully saved 204 frames to /home/w/workspace/carla_apollo/apollo/modules/carla_bridge/multi_vehicle_fuzz/test_outputs/20241126_131907/test_20241126_131909_v90_w60/original_scenario/carla_records/vehicle_states.json[0m
+[1mI1126[0m [32m13:19:46.829[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Cleanup completed[0m
+[1mI1126[0m [32m13:19:46.829[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [0m
+[1mI1126[0m [32m13:19:46.830[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Cleaning up...[0m
+[1mI1126[0m [32m13:19:46.830[0m [36mcontainer.py:895[0m] [1m[Record Data ERR] 2024-11-26 13:19:46.830 | INFO     | __main__:save_data:327 - Stopped Carla recording[0m
+[1mI1126[0m [32m13:19:46.831[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] -------------------------------------------- SAVE the JSON LOG DATA---------------[0m
+[1mI1126[0m [32m13:19:46.831[0m [36mcontainer.py:895[0m] [1m[Record Data ERR] 2024-11-26 13:19:46.831 | INFO     | __main__:save_data:330 - ++++++++++++++++++++++++++++++++++++++= the output dir is :, /home/w/workspace/carla_apollo/apollo/modules/carla_bridge/multi_vehicle_fuzz/test_outputs/20241126_131907/test_20241126_131909_v90_w60/original_scenario/carla_records/vehicle_states.json[0m
+[1mI1126[0m [32m13:19:47.094[0m [36mcontainer.py:895[0m] [1m[Record Data ERR] 2024-11-26 13:19:47.093 | INFO     | __main__:save_data:347 - Successfully saved 204 frames to /home/w/workspace/carla_apollo/apollo/modules/carla_bridge/multi_vehicle_fuzz/test_outputs/20241126_131907/test_20241126_131909_v90_w60/original_scenario/carla_records/vehicle_states.json[0m
+[1mI1126[0m [32m13:19:47.094[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Cleanup completed[0m
+[1mI1126[0m [32m13:19:47.095[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [0m
+[1mI1126[0m [32m13:19:47.095[0m [36mcontainer.py:895[0m] [1m[Record Data ERR] 2024-11-26 13:19:47.095 | INFO     | __main__:save_data:327 - Stopped Carla recording[0m
+[1mI1126[0m [32m13:19:47.096[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] done.[0m
+[1mI1126[0m [32m13:19:47.096[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] [0m
+[1mI1126[0m [32m13:19:47.097[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] Cleaning up...[0m
+[1mI1126[0m [32m13:19:47.096[0m [36mcontainer.py:895[0m] [1m[Record Data ERR] 2024-11-26 13:19:47.095 | INFO     | __main__:save_data:330 - ++++++++++++++++++++++++++++++++++++++= the output dir is :, /home/w/workspace/carla_apollo/apollo/modules/carla_bridge/multi_vehicle_fuzz/test_outputs/20241126_131907/test_20241126_131909_v90_w60/original_scenario/carla_records/vehicle_states.json[0m
+[1mI1126[0m [32m13:19:47.097[0m [36mcontainer.py:895[0m] [1m[Record Data OUT] -------------------------------------------- SAVE the JSON LOG DATA---------------[0m
+[33m[1mW1126[0m [32m13:19:47.116[0m [36mcontainer.py:1082[0m] [1mProcess still running after SIGINT, using SIGKILL[0m
+Executing command: docker exec -u $USER apollo_dev_w pkill --signal SIGINT -f 'python3.*main.py'
+[1mI1126[0m [32m13:19:47.136[0m [36mcontainer.py:1085[0m] [1mRecord data process stopped[0m
+[1mI1126[0m [32m13:19:47.137[0m [36mcontainer.py:697[0m] [1mStopping bridge in container apollo_dev_w[0m
+----result CompletedProcess(args="docker exec -u $USER apollo_dev_w pkill --signal SIGINT -f 'python3.*main.py'", returncode=0, stdout='', stderr='')
+Command executed successfully: 
+Executing command: docker exec -u $USER apollo_dev_w pkill --signal SIGINT -f 'python.*main.py'
+----result CompletedProcess(args="docker exec -u $USER apollo_dev_w pkill --signal SIGINT -f 'python.*main.py'", returncode=0, stdout='', stderr='')
+Command executed successfully: 
+Executing command: docker exec -u $USER apollo_dev_w pkill --signal SIGINT -f 'python3.*generate_traffic.py'
+[1mI1126[0m [32m13:19:49.381[0m [36mcontainer.py:705[0m] [1mBridge stopped successfully[0m
+[1mI1126[0m [32m13:19:49.381[0m [36mcontainer.py:1093[0m] [1mStopping traffic generation...[0m
+----result CompletedProcess(args="docker exec -u $USER apollo_dev_w pkill --signal SIGINT -f 'python3.*generate_traffic.py'", returncode=0, stdout='', stderr='')
+Command executed successfully: 
+Executing command: docker exec -u $USER apollo_dev_w bash -c 'ps aux | grep "generate_traffic.py" | grep -v grep | wc -l'
+----result CompletedProcess(args='docker exec -u $USER apollo_dev_w bash -c \'ps aux | grep "generate_traffic.py" | grep -v grep | wc -l\'', returncode=0, stdout='0\n', stderr='')
+Command executed successfully: 0
+
+Executing command: docker exec -u $USER apollo_dev_w bash -c 'ps aux | grep "traffic_manager" | grep -v grep | wc -l'
+----result CompletedProcess(args='docker exec -u $USER apollo_dev_w bash -c \'ps aux | grep "traffic_manager" | grep -v grep | wc -l\'', returncode=0, stdout='0\n', stderr='')
+Command executed successfully: 0
+
+Executing command: docker exec -u $USER apollo_dev_w pkill --signal SIGINT -f 'python3.*routing_handler.py'
+[1mI1126[0m [32m13:19:52.812[0m [36mcontainer.py:1110[0m] [1mTraffic generation stopped successfully[0m
+[1mI1126[0m [32m13:19:52.812[0m [36mcontainer.py:713[0m] [1mStopping routing handler...[0m
+----result CompletedProcess(args="docker exec -u $USER apollo_dev_w pkill --signal SIGINT -f 'python3.*routing_handler.py'", returncode=0, stdout='', stderr='')
+Command executed successfully: 
+Executing command: docker exec -u $USER apollo_dev_w bash -c 'ps aux | grep "routing_handler.py" | grep -v grep | wc -l'
+----result CompletedProcess(args='docker exec -u $USER apollo_dev_w bash -c \'ps aux | grep "routing_handler.py" | grep -v grep | wc -l\'', returncode=0, stdout='0\n', stderr='')
+Command executed successfully: 0
+
+********************========================************
+********************CLEAN APOLLO DATA!! CHECKOUT!!!************
+********************========================************
+test_output_dir is: /home/w/workspace/carla_apollo/apollo/modules/carla_bridge/multi_vehicle_fuzz/test_outputs/20241126_131907/test_20241126_131909_v90_w60
+container_log_dir is: /apollo/modules/carla_bridge/multi_vehicle_fuzz/test_outputs/20241126_131907/test_20241126_131909_v90_w60
+--- before make directory
+Executing command: docker exec -u $USER apollo_dev_w mkdir -p '/apollo/modules/carla_bridge/multi_vehicle_fuzz/test_outputs/20241126_131907/test_20241126_131909_v90_w60'
+----result CompletedProcess(args="docker exec -u $USER apollo_dev_w mkdir -p '/apollo/modules/carla_bridge/multi_vehicle_fuzz/test_outputs/20241126_131907/test_20241126_131909_v90_w60'", returncode=0, stdout='', stderr='')
+Command executed successfully: 
+--- after make directory
+Executing command: docker exec -u $USER apollo_dev_w chmod -R 777 /apollo/modules/carla_bridge/multi_vehicle_fuzz/test_outputs/20241126_131907/test_20241126_131909_v90_w60/original_scenario/apollo_logs/runtime_logs
+----result CompletedProcess(args='docker exec -u $USER apollo_dev_w chmod -R 777 /apollo/modules/carla_bridge/multi_vehicle_fuzz/test_outputs/20241126_131907/test_20241126_131909_v90_w60/original_scenario/apollo_logs/runtime_logs', returncode=0, stdout='', stderr='')
+Command executed successfully: 
+--- chmod -r directory
+[1mI1126[0m [32m13:20:00.127[0m [36mcontainer.py:1274[0m] [1mSaved Apollo runtime logs to /apollo/modules/carla_bridge/multi_vehicle_fuzz/test_outputs/20241126_131907/test_20241126_131909_v90_w60/original_scenario/apollo_logs/runtime_logs[0m
+--- before copy files to the target directory
+Executing command: docker exec -u $USER apollo_dev_w bash -c 'if [ -d "/apollo/data/log" ]; then                     cd /apollo/data/log &&                     sudo tar czf - . | (cd /apollo/modules/carla_bridge/multi_vehicle_fuzz/test_outputs/20241126_131907/test_20241126_131909_v90_w60/original_scenario/apollo_logs/runtime_logs && sudo tar xzf -) &&                     sudo chown -R $(id -u):$(id -g) /apollo/modules/carla_bridge/multi_vehicle_fuzz/test_outputs/20241126_131907/test_20241126_131909_v90_w60/original_scenario/apollo_logs/runtime_logs;                 fi'
+----result CompletedProcess(args='docker exec -u $USER apollo_dev_w bash -c \'if [ -d "/apollo/data/log" ]; then                     cd /apollo/data/log &&                     sudo tar czf - . | (cd /apollo/modules/carla_bridge/multi_vehicle_fuzz/test_outputs/20241126_131907/test_20241126_131909_v90_w60/original_scenario/apollo_logs/runtime_logs && sudo tar xzf -) &&                     sudo chown -R $(id -u):$(id -g) /apollo/modules/carla_bridge/multi_vehicle_fuzz/test_outputs/20241126_131907/test_20241126_131909_v90_w60/original_scenario/apollo_logs/runtime_logs;                 fi\'', returncode=0)
+Command executed successfully: None
+--- after copy files to the target directory
+[1mI1126[0m [32m13:20:39.051[0m [36mcontainer.py:1280[0m] [1mSaved Apollo runtime logs to /apollo/modules/carla_bridge/multi_vehicle_fuzz/test_outputs/20241126_131907/test_20241126_131909_v90_w60/original_scenario/apollo_logs/runtime_logs[0m
+================copy_cmd is: bash -c 'if [ -d "/apollo/data/log" ]; then                     cd /apollo/data/log &&                     sudo tar czf - . | (cd /apollo/modules/carla_bridge/multi_vehicle_fuzz/test_outputs/20241126_131907/test_20241126_131909_v90_w60/original_scenario/apollo_logs/runtime_logs && sudo tar xzf -) &&                     sudo chown -R $(id -u):$(id -g) /apollo/modules/carla_bridge/multi_vehicle_fuzz/test_outputs/20241126_131907/test_20241126_131909_v90_w60/original_scenario/apollo_logs/runtime_logs;                 fi'
+--- before clean the bag directory=
+Executing command: docker exec -u $USER apollo_dev_w bash -c 'rm -rf /apollo/data/bag/*'
+----result CompletedProcess(args="docker exec -u $USER apollo_dev_w bash -c 'rm -rf /apollo/data/bag/*'", returncode=0)
+Command executed successfully: None
+Executing command: docker exec -u $USER apollo_dev_w bash -c 'rm -rf /apollo/data/core/*'
+----result CompletedProcess(args="docker exec -u $USER apollo_dev_w bash -c 'rm -rf /apollo/data/core/*'", returncode=0)
+Command executed successfully: None
+[1mI1126[0m [32m13:20:39.192[0m [36mcontainer.py:1291[0m] [1mCleaned Apollo data directories[0m
+[1mI1126[0m [32m13:20:39.220[0m [36mtester.py:170[0m] [1mSplitting scenario data: 204 frames into 30s segments[0m
+[1mI1126[0m [32m13:20:39.373[0m [36mtester.py:436[0m] [1mGenerated objects replay config: /home/w/workspace/carla_apollo/apollo/modules/carla_bridge/multi_vehicle_fuzz/test_outputs/20241126_131907/test_20241126_131909_v90_w60/original_scenario/carla_records/segments/objects_replay_001.json[0m
+[1mI1126[0m [32m13:20:39.373[0m [36mtester.py:210[0m] [1mCreated segment segment_001.json with 204 frames[0m
+[1mI1126[0m [32m13:20:39.374[0m [36mtester.py:215[0m] [1mAttempting to save mapping file to: /home/w/workspace/carla_apollo/apollo/modules/carla_bridge/multi_vehicle_fuzz/test_outputs/20241126_131907/test_20241126_131909_v90_w60/metadata/segment_mappings.json[0m
+[1mI1126[0m [32m13:20:39.374[0m [36mtester.py:226[0m] [1m!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Successfully saved segment mappings to /home/w/workspace/carla_apollo/apollo/modules/carla_bridge/multi_vehicle_fuzz/test_outputs/20241126_131907/test_20241126_131909_v90_w60/metadata/segment_mappings.json[0m
+[1mI1126[0m [32m13:20:39.376[0m [36mtester.py:618[0m] [1mRunning replay for segment_001[0m
+[1mI1126[0m [32m13:20:39.400[0m [36mtester.py:837[0m] [1mNo residual processes found[0m
+[1mI1126[0m [32m13:20:39.401[0m [36mtester.py:650[0m] [1m*****************Checking if processes have been correctly terminated*****************[0m
+[1mI1126[0m [32m13:20:39.401[0m [36mreset_dreamview.py:30[0m] [1mSent reset command[0m
+****************************************
+LAUNCH BRIDGE
+replay is: True objects_file is: /home/w/workspace/carla_apollo/apollo/modules/carla_bridge/multi_vehicle_fuzz/test_outputs/20241126_131907/test_20241126_131909_v90_w60/original_scenario/carla_records/segments/objects_replay_001.json
+**************************************************
+Generated command: cd /apollo/modules/carla_bridge && export PYTHONPATH=/apollo/bazel-bin/cyber/python/internal:/apollo/cyber:/apollo/cyber/python:/apollo:/apollo/modules:/apollo/modules/carla_bridge/carla_api/carla-0.9.14-py3.7-linux-x86_64.egg:/apollo/bazel-bin && python3 main.py --replay --replay_file /apollo/modules/carla_bridge/multi_vehicle_fuzz/test_outputs/20241126_131907/test_20241126_131909_v90_w60/original_scenario/carla_records/segments/segment_001.json --objects_file /apollo/modules/carla_bridge/multi_vehicle_fuzz/test_outputs/20241126_131907/test_20241126_131909_v90_w60/original_scenario/carla_records/segments/objects_replay_001.json
+Executing command: docker exec -u $USER -d apollo_dev_w bash -c "cd /apollo/modules/carla_bridge && export PYTHONPATH=/apollo/bazel-bin/cyber/python/internal:/apollo/cyber:/apollo/cyber/python:/apollo:/apollo/modules:/apollo/modules/carla_bridge/carla_api/carla-0.9.14-py3.7-linux-x86_64.egg:/apollo/bazel-bin && python3 main.py --replay --replay_file /apollo/modules/carla_bridge/multi_vehicle_fuzz/test_outputs/20241126_131907/test_20241126_131909_v90_w60/original_scenario/carla_records/segments/segment_001.json --objects_file /apollo/modules/carla_bridge/multi_vehicle_fuzz/test_outputs/20241126_131907/test_20241126_131909_v90_w60/original_scenario/carla_records/segments/objects_replay_001.json"
+[1mI1126[0m [32m13:20:54.433[0m [36mcontainer.py:452[0m] [1mStarting Carla bridge...[0m
+Successfully initiated launching Carla bridge asynchronously
+Executing command: docker exec -u $USER apollo_dev_w bash -c 'ps aux | grep "main.py" | grep -v grep | wc -l'
+[1mI1126[0m [32m13:20:59.550[0m [36mcontainer.py:504[0m] [1mSuccessfully initiated launching Carla bridge asynchronously[0m
+----result CompletedProcess(args='docker exec -u $USER apollo_dev_w bash -c \'ps aux | grep "main.py" | grep -v grep | wc -l\'', returncode=0, stdout='1\n', stderr='')
+Command executed successfully: 1
+
+[1mI1126[0m [32m13:20:59.638[0m [36mcontainer.py:517[0m] [1mCarla bridge is running.[0m
+Carla bridge is running.
+Executing command: docker exec -u $USER apollo_dev_w mkdir -p '/apollo/modules/carla_bridge/multi_vehicle_fuzz/test_outputs/20241126_131907/test_20241126_131909_v90_w60/replay_scenarios/segment_001/apollo_logs'
+----result CompletedProcess(args="docker exec -u $USER apollo_dev_w mkdir -p '/apollo/modules/carla_bridge/multi_vehicle_fuzz/test_outputs/20241126_131907/test_20241126_131909_v90_w60/replay_scenarios/segment_001/apollo_logs'", returncode=0, stdout='', stderr='')
+Command executed successfully: 
+Executing command: docker exec -u $USER -d apollo_dev_w bash -c 'source /apollo/cyber/setup.bash &&                 cyber_recorder record -a -o "/apollo/modules/carla_bridge/multi_vehicle_fuzz/test_outputs/20241126_131907/test_20241126_131909_v90_w60/replay_scenarios/segment_001/apollo_logs/apollo.record" > /dev/null 2>&1'
+Executing command: docker exec -u $USER apollo_dev_w bash -c 'ps aux | grep "cyber_recorder.*record" | grep -v grep | wc -l'
+[1mI1126[0m [32m13:20:59.686[0m [36mcontainer.py:1437[0m] [1mStarted Apollo recorder, saving to /apollo/modules/carla_bridge/multi_vehicle_fuzz/test_outputs/20241126_131907/test_20241126_131909_v90_w60/replay_scenarios/segment_001/apollo_logs/apollo.record[0m
+----result CompletedProcess(args='docker exec -u $USER apollo_dev_w bash -c \'ps aux | grep "cyber_recorder.*record" | grep -v grep | wc -l\'', returncode=0, stdout='0\n', stderr='')
+Command executed successfully: 0
+
+Executing command: docker exec -u $USER apollo_dev_w bash -c 'ps aux | grep "cyber_recorder.*record" | grep -v grep | wc -l'
+----result CompletedProcess(args='docker exec -u $USER apollo_dev_w bash -c \'ps aux | grep "cyber_recorder.*record" | grep -v grep | wc -l\'', returncode=0, stdout='2\n', stderr='')
+Command executed successfully: 2
+
+[1mI1126[0m [32m13:21:00.830[0m [36mcontainer.py:1453[0m] [1mApollo recorder is running[0m
+[1mI1126[0m [32m13:21:00.831[0m [36mcontainer.py:927[0m] [1mStarting replay record data with paths:[0m
+[1mI1126[0m [32m13:21:00.831[0m [36mcontainer.py:928[0m] [1mOutput path: /home/w/workspace/carla_apollo/apollo/modules/carla_bridge/multi_vehicle_fuzz/test_outputs/20241126_131907/test_20241126_131909_v90_w60/replay_scenarios/segment_001/carla_records/replay_vehicle_states_segment_001.json[0m
+[1mI1126[0m [32m13:21:00.831[0m [36mcontainer.py:929[0m] [1mLog directory: /home/w/workspace/carla_apollo/apollo/modules/carla_bridge/multi_vehicle_fuzz/test_outputs/20241126_131907/test_20241126_131909_v90_w60/replay_scenarios/segment_001/carla_records[0m
+[1mI1126[0m [32m13:21:00.832[0m [36mcontainer.py:930[0m] [1mReplay index: segment_001[0m
+[1mI1126[0m [32m13:21:00.832[0m [36mcontainer.py:943[0m] [1mExecuting command: python3 -u /home/w/workspace/carla_apollo/apollo/modules/carla_bridge/multi_vehicle_fuzz/record_replay_data.py --output /home/w/workspace/carla_apollo/apollo/modules/carla_bridge/multi_vehicle_fuzz/test_outputs/20241126_131907/test_20241126_131909_v90_w60/replay_scenarios/segment_001/carla_records/replay_vehicle_states_segment_001.json --log-dir /home/w/workspace/carla_apollo/apollo/modules/carla_bridge/multi_vehicle_fuzz/test_outputs/20241126_131907/test_20241126_131909_v90_w60/replay_scenarios/segment_001/carla_records --replay-index segment_001[0m
+[1mI1126[0m [32m13:21:00.835[0m [36mcontainer.py:970[0m] [1mStarted replay record process with PID 24730[0m
+[1mI1126[0m [32m13:21:01.883[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:01,883 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:01.983[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:01,983 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:02.084[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:02,084 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:02.184[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:02,184 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:02.285[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:02,284 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:02.385[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:02,385 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:02.485[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:02,485 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:02.585[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:02,585 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:02.686[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:02,685 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:02.786[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:02,786 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:02.837[0m [36mtester.py:697[0m] [1mReplaying saved routing[0m
+***************SET DESTINATION************************
+[1mI1126[0m [32m13:21:02.838[0m [36mcontainer.py:1143[0m] [1mSet-Destination: Generated command: source /apollo/cyber/setup.bash && source /apollo/scripts/apollo_base.sh && export PYTHONPATH=$PYTHONPATH:/apollo/bazel-bin/cyber/python/internal:/apollo/cyber:/apollo/cyber/python:/apollo:/apollo/modules:/apollo/modules/carla_bridge/carla_api/carla-0.9.14-py3.7-linux-x86_64.egg:/apollo/bazel-bin:/apollo/modules/carla_bridge && cd /apollo/modules/carla_bridge/multi_vehicle_fuzz && python3 routing_handler.py --mode replay --test_dir /apollo/modules/carla_bridge/multi_vehicle_fuzz/test_outputs/20241126_131907/test_20241126_131909_v90_w60 && exit 0[0m
+Set-Destination: Generated command: source /apollo/cyber/setup.bash && source /apollo/scripts/apollo_base.sh && export PYTHONPATH=$PYTHONPATH:/apollo/bazel-bin/cyber/python/internal:/apollo/cyber:/apollo/cyber/python:/apollo:/apollo/modules:/apollo/modules/carla_bridge/carla_api/carla-0.9.14-py3.7-linux-x86_64.egg:/apollo/bazel-bin:/apollo/modules/carla_bridge && cd /apollo/modules/carla_bridge/multi_vehicle_fuzz && python3 routing_handler.py --mode replay --test_dir /apollo/modules/carla_bridge/multi_vehicle_fuzz/test_outputs/20241126_131907/test_20241126_131909_v90_w60 && exit 0
+Executing command: docker exec -u $USER -d apollo_dev_w bash -c 'source /apollo/cyber/setup.bash && source /apollo/scripts/apollo_base.sh && export PYTHONPATH=$PYTHONPATH:/apollo/bazel-bin/cyber/python/internal:/apollo/cyber:/apollo/cyber/python:/apollo:/apollo/modules:/apollo/modules/carla_bridge/carla_api/carla-0.9.14-py3.7-linux-x86_64.egg:/apollo/bazel-bin:/apollo/modules/carla_bridge && cd /apollo/modules/carla_bridge/multi_vehicle_fuzz && python3 routing_handler.py --mode replay --test_dir /apollo/modules/carla_bridge/multi_vehicle_fuzz/test_outputs/20241126_131907/test_20241126_131909_v90_w60 && exit 0'
+[1mI1126[0m [32m13:21:02.886[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:02,886 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:02.964[0m [36mcontainer.py:1151[0m] [1mSuccessfully initiated setting destination asynchronously[0m
+Successfully initiated setting destination asynchronously
+[1mI1126[0m [32m13:21:02.986[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:02,986 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:03.087[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:03,086 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:03.187[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:03,187 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:03.287[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:03,287 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:03.388[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:03,387 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:03.488[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:03,488 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:03.588[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:03,588 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:03.688[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:03,688 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:03.789[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:03,789 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:03.889[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:03,889 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:03.989[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:03,989 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:04.090[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:04,089 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:04.190[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:04,190 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:04.290[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:04,290 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:04.391[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:04,390 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:04.491[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:04,491 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:04.591[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:04,591 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:04.692[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:04,691 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:04.792[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:04,792 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:04.892[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:04,892 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:04.992[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:04,992 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:05.093[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:05,093 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:05.193[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:05,193 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:05.293[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:05,293 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:05.393[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:05,393 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:05.494[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:05,494 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:05.594[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:05,594 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:05.694[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:05,694 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:05.795[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:05,794 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:05.895[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:05,895 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:05.995[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:05,995 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:06.095[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:06,095 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:06.196[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:06,195 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:06.296[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:06,296 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:06.396[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:06,396 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:06.496[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:06,496 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:06.597[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:06,597 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:06.697[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:06,697 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:06.798[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:06,797 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:06.898[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:06,898 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:06.998[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:06,998 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:07.098[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:07,098 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:07.199[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:07,198 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:07.299[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:07,299 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:07.399[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:07,399 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:07.499[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:07,499 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:07.600[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:07,600 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:07.700[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:07,700 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:07.800[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:07,800 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:07.901[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:07,900 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:08.001[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:08,001 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:08.101[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:08,101 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:08.201[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:08,201 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:08.302[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:08,301 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:08.402[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:08,402 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:08.502[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:08,502 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:08.602[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:08,602 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:08.703[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:08,702 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:08.803[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:08,803 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:08.903[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:08,903 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:09.003[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:09,003 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:09.104[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:09,104 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:09.204[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:09,204 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:09.304[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:09,304 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:09.405[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:09,404 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:09.505[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:09,505 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:09.605[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:09,605 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:09.705[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:09,705 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:09.806[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:09,805 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:09.906[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:09,906 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:10.006[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:10,006 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:10.106[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:10,106 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:10.207[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:10,206 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:10.307[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:10,307 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:10.407[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:10,407 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:10.508[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:10,507 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:10.608[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:10,608 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:10.708[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:10,708 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:10.808[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:10,808 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:10.909[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:10,908 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:11.009[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:11,009 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:11.109[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:11,109 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:11.210[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:11,210 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:11.310[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:11,310 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:11.410[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:11,410 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:11.511[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:11,510 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:11.611[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:11,611 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:11.711[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:11,711 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:11.811[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:11,811 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:11.912[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:11,911 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
+[1mI1126[0m [32m13:21:12.012[0m [36mcontainer.py:959[0m] [1m[Replay Record OUT] 2024-11-26 13:21:12,012 [INFO] Waiting for pipe at /tmp/replay_pipe...[0m
